@@ -24,8 +24,9 @@ public class WebbServiceConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()//테스트 때문에 비활성화
                 .authorizeRequests()
-                    .antMatchers("/","/account/register","/css/**").permitAll()
+                    .antMatchers("/","/account/register","/css/**","/api/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
