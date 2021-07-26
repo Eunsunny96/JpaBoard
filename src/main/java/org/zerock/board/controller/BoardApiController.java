@@ -19,11 +19,11 @@ import java.util.List;
         @GetMapping("/boards")
         List<Board> all(@RequestParam (required = false, defaultValue = "") String title ,
                         @RequestParam (required = false, defaultValue = "") String content) {
-            if(StringUtils.isEmpty(title)){
+            if(StringUtils.isEmpty(title) && StringUtils.isEmpty(content)){
                 return repository.findAll();
 
             }else {
-                return repository.findByTitle(title);
+                return repository.findByTitleOrContent(title,content);
             }
         }
         // end::get-aggregate-root[]
