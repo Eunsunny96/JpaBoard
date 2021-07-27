@@ -1,6 +1,7 @@
 package org.zerock.board.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 import org.zerock.board.model.Board;
@@ -58,6 +59,7 @@ import java.util.List;
         }
 
         @DeleteMapping("/boards/{id}")
+        @Secured("ROLE_ADMIN")
         void deleteBoard(@PathVariable Long id) {
             repository.deleteById(id);
         }

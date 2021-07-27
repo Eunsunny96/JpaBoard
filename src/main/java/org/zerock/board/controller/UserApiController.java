@@ -1,5 +1,6 @@
 package org.zerock.board.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.zerock.board.model.Board;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@Slf4j
     public class UserApiController {
 
         @Autowired
@@ -19,7 +21,9 @@ import java.util.List;
 
         @GetMapping("/users")
         List<User> all( ) {
-            return repository.findAll();
+            List<User> users = repository.findAll();
+            users.get(0).getBoards().size();
+            return users;
 
             }
 

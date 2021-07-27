@@ -1,10 +1,10 @@
 package org.zerock.board.controller;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,7 +34,7 @@ public class BoardController {
     private BoardService boardService;
 
     @GetMapping("/list")
-    public String list(Model model,@PageableDefault(size = 2) Pageable pageable,
+    public String list(Model model,@PageableDefault(size = 2, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable,
                        @RequestParam(required = false,defaultValue = "") String searchText) {
 
         //Page<Board> boards = boardRepository.findAll(pageable);
